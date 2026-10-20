@@ -1,0 +1,23 @@
+# Configuration locale et secrets
+.env
+.env.*
+!.env.example
+config/local.php
+
+# Dépendances et fichiers générés
+/vendor/
+/node_modules/
+/coverage/
+/build/
+
+# Journaux et fichiers système
+*.log
+.DS_Store
+Thumbs.db
+
+# Fichiers temporaires d'éditeur
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
