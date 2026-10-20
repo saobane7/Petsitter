@@ -2,7 +2,7 @@
 
 Petgarden est un projet étudiant de site de garde d’animaux. Il vise à mettre en relation des propriétaires et des gardiens autour d’annonces de garde, de candidatures et d’avis.
 
-> **État du projet :** prototype en développement. Le dépôt contient le schéma SQL et les premiers fichiers PHP, mais l’installation et les parcours d’inscription, de connexion et de consultation des annonces ne sont pas encore opérationnels. Voir [TODO.md](TODO.md) pour le bilan actuel.
+> **État du projet :** prototype en développement. Un premier parcours de consultation des annonces, d’inscription et de connexion est implémenté ; son intégration à une base MySQL doit encore être vérifiée sur les postes de l’équipe. Voir [TODO.md](TODO.md) pour le bilan actuel.
 
 ## Fonctionnalités prévues
 
@@ -13,7 +13,7 @@ Petgarden est un projet étudiant de site de garde d’animaux. Il vise à mettr
 
 ## Technologies
 
-- PHP
+- PHP 7.3 ou plus récent
 - MySQL
 - HTML
 
@@ -22,11 +22,11 @@ Petgarden est un projet étudiant de site de garde d’animaux. Il vise à mettr
 ```text
 .
 ├── config/                  # Connexion à la base de données
-├── FormulaireConnexion/     # Traitement de connexion (en cours)
-├── modele/                  # Modèles PHP
+├── FormulaireConnexion/     # Services d’inscription et de connexion
+├── modele/                  # Modèles utilisateur et annonce
 ├── sql/petgarden.sql        # Schéma et données de démonstration
 ├── vue/                     # Vues (à compléter)
-├── index.php                # Point d’entrée actuel, encore une page de test
+├── index.php                # Point d’entrée et routes du premier parcours
 └── TODO.md                  # État de la checklist et tâches restantes
 ```
 
@@ -34,7 +34,7 @@ Petgarden est un projet étudiant de site de garde d’animaux. Il vise à mettr
 
 ### Prérequis
 
-- PHP avec PDO MySQL activé
+- PHP 7.3 ou plus récent avec les extensions PDO MySQL et mbstring
 - MySQL ou MariaDB
 - Un serveur PHP local ou un serveur web configuré pour PHP
 
@@ -48,7 +48,16 @@ Petgarden est un projet étudiant de site de garde d’animaux. Il vise à mettr
    ```
 
 2. Créer la base en important `sql/petgarden.sql` dans MySQL.
-3. Configurer les identifiants de base de données localement dans `config/ConnexionBDD.php`.
+3. Configurer la connexion avec les variables d’environnement suivantes (adaptez les valeurs à votre installation) :
+
+   ```bash
+   export PETGARDEN_DB_HOST=127.0.0.1
+   export PETGARDEN_DB_NAME=petgarden
+   export PETGARDEN_DB_USER=root
+   export PETGARDEN_DB_PASSWORD=''
+   ```
+
+   Le code utilise les valeurs locales `127.0.0.1`, `petgarden`, `root` et un mot de passe vide si les variables ne sont pas définies. Ne réutilisez pas ces valeurs par défaut en production.
 4. Démarrer un serveur PHP à la racine :
 
    ```bash
@@ -57,7 +66,7 @@ Petgarden est un projet étudiant de site de garde d’animaux. Il vise à mettr
 
 5. Ouvrir <http://localhost:8000>.
 
-> **À savoir :** ces étapes décrivent la cible de développement, mais ne fonctionnent pas encore de bout en bout. La configuration PHP comporte actuellement une erreur de syntaxe et les données SQL de démonstration utilisent un nom de colonne différent du schéma. Suivre [TODO.md](TODO.md) avant de considérer l’application installable.
+> **À savoir :** l’application propose maintenant une première liste d’annonces, une inscription et une connexion. Ces parcours nécessitent une base MySQL importée et n’ont pas encore été validés contre une instance réelle dans tous les environnements. Les comptes de démonstration du SQL utilisent les mots de passe de test historiques (`amine123`, `sarah123`, `lucas123`, `emma123`, `admin123`) ; ils sont réservés au développement local. Consultez [TODO.md](TODO.md) pour les vérifications restantes.
 
 ## Contribution
 

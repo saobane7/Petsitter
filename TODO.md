@@ -4,19 +4,17 @@
 
 ## Checklist initiale
 
-- [ ] **Base de données créée avec ses 4 tables — partiel.** `sql/petgarden.sql` définit bien `utilisateur`, `annonces`, `candidatures` et `avis`. La création réelle dans MySQL n'est pas vérifiable depuis le dépôt. En outre, l'insertion des utilisateurs renseigne `password`, alors que la colonne créée s'appelle `mdp` ; le script échouera à cette étape.
-- [ ] **Connexion de la base sans erreur — non.** `config/ConnexionBDD.php` contient une erreur de syntaxe (point-virgule manquant avant `try`) et d'autres erreurs visibles dans la configuration et le `catch`. La vérification `php -l` échoue sur ce fichier.
-- [ ] **Le routeur affiche au moins une page (liste des annonces) — non.** Il n'y a pas de routeur dans les fichiers présents. `index.php` affiche une page de test et ne lit pas les annonces.
-- [ ] **Inscription et connexion fonctionnelles — non.** `FormulaireConnexion/Connexion.class.php` interroge une table `user` inexistante au lieu de `utilisateur`, appelle `array()` au lieu de `execute()`, ne récupère pas le mot de passe et ne vérifie aucune authentification. Aucune inscription ni vue de formulaire n'est présente.
-- [ ] **Chaque étudiant sait précisément sur quels fichiers il travaille — à confirmer avec l'équipe.** Le dépôt ne documente pas la répartition des fichiers entre Rayan, Saobane et Predipe.
-- [ ] **Dépôt Git et trois branches — partiel.** Le dépôt Git existe. Seule la branche `main` apparaît en local, avec `origin/main` côté distant ; les trois branches annoncées ne sont pas présentes dans les références visibles.
+- [x] **Le schéma SQL définit les 4 tables et les données de test correspondent aux colonnes.** `sql/petgarden.sql` définit `utilisateur`, `annonces`, `candidatures` et `avis`; les mots de passe de démonstration sont hachés dans `mdp`. L'import réel dans MySQL reste à faire/vérifier sur chaque poste.
+- [ ] **La base de données se connecte sans erreur — code corrigé, connexion réelle à confirmer.** `config/ConnexionBDD.php` utilise PDO, `utf8mb4`, les requêtes natives et des variables d'environnement. Il faut encore la lancer avec un serveur MySQL configuré.
+- [x] **Le routeur affiche une liste d'annonces ouvertes.** `index.php` gère les pages `annonces`, `connexion`, `inscription` et `deconnexion`; les annonces viennent de `modele/Annonce.class.php`.
+- [ ] **Inscription et connexion — implémentées, intégration base à confirmer.** Les traitements utilisent la table `utilisateur`, des requêtes préparées, `password_hash()` / `password_verify()`, une session renouvelée après authentification et un jeton CSRF.
+- [ ] **Chaque étudiant sait précisément sur quels fichiers il travaille — à convenir en équipe.** La répartition entre Rayan, Saobane et Predipe n'est pas connue dans le dépôt.
+- [ ] **Dépôt Git et trois branches — à organiser.** Le dépôt existe ; une seule branche de travail est actuellement connue dans cette copie. Convenez ensemble de la stratégie et créez/poussez les branches nécessaires.
 
-## Manquements à traiter
+## Vérifications restantes
 
-- [ ] Corriger les erreurs de syntaxe et de configuration dans `config/ConnexionBDD.php`, puis vérifier la connexion à MySQL.
-- [ ] Remplacer `password` par `mdp` dans les insertions SQL et utiliser des mots de passe hachés adaptés à `password_verify()`.
-- [ ] Créer le routeur et une page qui liste les annonces ouvertes depuis la base.
-- [ ] Implémenter les formulaires et traitements d'inscription et de connexion avec requêtes préparées, hachage des mots de passe et session.
-- [ ] Aligner les requêtes et noms de tables sur le schéma SQL (`utilisateur`, etc.).
-- [ ] Créer/nommer les branches de travail convenues et documenter la répartition des fichiers entre les trois membres.
-- [ ] Corriger dans `modele/utilisateur.class.php` `getPrenom()` (renvoie actuellement le nom) et retirer les paramètres superflus des getters `getEmail()`, `getMdp()` et `getRole()`.
+- [ ] Importer `sql/petgarden.sql` dans une base locale vierge et vérifier les quatre tables et les données de test.
+- [ ] Tester la connexion PDO, la liste d'annonces, l'inscription, la connexion avec mot de passe correct/incorrect et la déconnexion contre MySQL.
+- [ ] Confirmer la répartition des fichiers entre Rayan, Saobane et Predipe et consigner les responsabilités convenues.
+- [ ] Convenez des branches d'équipe puis créez-les/poussez-les ; ne pas inventer de noms sans accord commun.
+- [ ] Ajouter les parcours de candidatures, gestion d'annonces et avis, qui ne font pas partie de cette première tranche.

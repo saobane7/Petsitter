@@ -111,12 +111,14 @@ create table avis (
 
 -- 5. donnees de test
 
-insert into utilisateur (id, nom, prenom, email, password, role) values
-(1, 'amine', 'diallo', 'amine.diallo@gmail.com', 'amine123', 'utilisateur'),
-(2, 'sarah', 'martin', 'sarah.martin@yahoo.fr', 'sarah123', 'utilisateur'),
-(3, 'lucas', 'bernard', 'lucas.bernard@outlook.com', 'lucas123', 'utilisateur'),
-(4, 'emma', 'petit', 'emma.petit@gmail.com', 'emma123', 'utilisateur'),
-(5, 'admin', 'petsitter', 'admin.petsitter@yahoo.fr', 'admin123', 'admin');
+-- Les mots de passe de démonstration restent identiques à ceux du prototype,
+-- mais sont stockés sous forme de hash pour password_verify().
+insert into utilisateur (id, nom, prenom, email, mdp, role) values
+(1, 'amine', 'diallo', 'amine.diallo@gmail.com', '$2y$10$rXkAvLcWVhQKRCjdjJqHZO/NIbkaTc0SLXBukGsFAIV95R6bnlwo.', 'utilisateur'),
+(2, 'sarah', 'martin', 'sarah.martin@yahoo.fr', '$2y$10$XQVskydiia7LkQvC9utDOuGIbWUOmRLl0yXYFe1Ir3wZBVqBlzT2.', 'utilisateur'),
+(3, 'lucas', 'bernard', 'lucas.bernard@outlook.com', '$2y$10$OUYS4yLhBVK0CyOjJQ9agudq82e2PT7WxSjSXVoQ.cZzb.OsmpCjO', 'utilisateur'),
+(4, 'emma', 'petit', 'emma.petit@gmail.com', '$2y$10$JqOxf0ITdtrSZ4TgXh29fuYPz4Uok7EwKmzly.IxGqyu/0yEN/zLi', 'utilisateur'),
+(5, 'admin', 'petsitter', 'admin.petsitter@yahoo.fr', '$2y$10$KTFCNStz32k0n1WxmCOF1e1nKMzVLZ/m8Y8FRQ7kmbPEUpuUt6gE2', 'admin');
 
 insert into annonces
 (id, titre, type_animal, ville, date_debut, date_fin, description, statut, id_proprietaire)
