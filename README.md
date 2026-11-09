@@ -1,44 +1,50 @@
 # Petgarden
 
-Petgarden est un projet étudiant de site de garde d’animaux. Il vise à mettre en relation des propriétaires et des gardiens autour d’annonces de garde, de candidatures et d’avis.
+Petgarden est un projet étudiant de site de garde d'animaux (pet sitting). Il met en relation des propriétaires et des gardiens autour d'annonces de garde, de candidatures et d'avis.
 
-> **État du projet :** prototype en développement. Un premier parcours de consultation des annonces, d’inscription et de connexion est implémenté ; son intégration à une base MySQL doit encore être vérifiée sur les postes de l’équipe. Voir [TODO.md](TODO.md) pour le bilan actuel.
+> **État du projet :** prototype en développement. Consultation des annonces, inscription et connexion sont implémentées ; leur validation sur une instance MySQL locale reste à confirmer. Voir [CHECKLIST.md](CHECKLIST.md).
 
-## Fonctionnalités prévues
+## Fonctionnalités
 
-- Comptes utilisateur et authentification
-- Publication et consultation d’annonces de garde
-- Candidatures de gardiens
-- Avis après une garde
+- Comptes utilisateur : inscription, connexion, déconnexion, espace personnel
+- Consultation publique des annonces de garde ouvertes
+- Publication, liste et modification de ses propres annonces
+- _Prévu :_ candidatures de gardiens, avis après une garde
 
 ## Technologies
 
-- PHP 7.3 ou plus récent
-- MySQL
-- HTML
+- PHP 7.4 ou plus récent (testé avec PHP 8.3), extensions PDO MySQL et mbstring
+- MySQL ou MariaDB
+- HTML / CSS
 
-## Structure actuelle
+## Architecture MVC
 
 ```text
 .
-├── config/                  # Connexion à la base de données
-├── FormulaireConnexion/     # Services d’inscription et de connexion
-├── modele/                  # Modèles utilisateur et annonce
-├── sql/petgarden.sql        # Schéma et données de démonstration
-├── vue/                     # Vues (à compléter)
-├── index.php                # Point d’entrée et routes du premier parcours
-└── TODO.md                  # État de la checklist et tâches restantes
+├── model/           # M — accès à la base de données (une classe par table)
+├── vue/             # V — pages HTML (une vue par écran)
+├── controleur/      # C — logique de chaque écran : formulaire, validation, appel du modèle
+├── public/          # Racine web : une page d'entrée par écran (annonces.php, Connexion.php…) et assets/
+├── config/
+│   └── database.php # Classe Database : connexion à la base (4 valeurs à adapter)
+├── database/
+│   └── petgarden.sql# Schéma et données de démonstration
+├── docs/            # Maquette Figma, UML, MCD, guide MVC
+├── CHANGELOG.md     # Historique des changements
+├── CHECKLIST.md     # Suivi des tâches
+└── CONTRIBUTING.md  # Flux Git et conventions
 ```
 
+Le trajet d'une page, par exemple `mesAnnonces.php` :
+
+```text
+public/mesAnnonces.php  →  AnnonceController  →  Annonce (model)  →  vue/mesAnnonces.php
+   (point d'entrée)         (contrôleur)         (requête SQL)        (HTML affiché)
+```
+
+Pour ajouter une page, voir le [guide MVC](docs/guide-mvc.md).
+
 ## Démarrage
-
-### Prérequis
-
-- PHP 7.3 ou plus récent avec les extensions PDO MySQL et mbstring
-- MySQL ou MariaDB
-- Un serveur PHP local ou un serveur web configuré pour PHP
-
-### Installation prévue
 
 1. Cloner le dépôt :
 
@@ -47,34 +53,26 @@ Petgarden est un projet étudiant de site de garde d’animaux. Il vise à mettr
    cd Petsitter
    ```
 
-2. Créer la base en important `sql/petgarden.sql` dans MySQL.
-3. Configurer la connexion avec les variables d’environnement suivantes (adaptez les valeurs à votre installation) :
+2. Créer la base en important `database/petgarden.sql` dans MySQL. Pour réimporter après une mise à jour du fichier, supprimer d'abord la base avec `drop database petgarden;`.
+3. Ouvrir `config/database.php` et adapter si besoin les 4 valeurs au début de la classe `Database` (hôte, nom de la base, utilisateur, mot de passe). Par défaut : `localhost`, `petgarden`, `root`, mot de passe vide. Ne commitez jamais un vrai mot de passe.
+4. Démarrer le serveur PHP en pointant sur `public/` :
 
    ```bash
-   export PETGARDEN_DB_HOST=127.0.0.1
-   export PETGARDEN_DB_NAME=petgarden
-   export PETGARDEN_DB_USER=root
-   export PETGARDEN_DB_PASSWORD=''
+   php -S localhost:8000 -t public
    ```
 
-   Le code utilise les valeurs locales `127.0.0.1`, `petgarden`, `root` et un mot de passe vide si les variables ne sont pas définies. Ne réutilisez pas ces valeurs par défaut en production.
-4. Démarrer un serveur PHP à la racine :
+5. Ouvrir <http://localhost:8000> (redirige vers la liste des annonces).
 
-   ```bash
-   php -S localhost:8000
-   ```
+> Les comptes de démonstration du SQL utilisent des mots de passe de test (`amine123`, `sarah123`, `lucas123`, `emma123`, `admin123`, ainsi que `lea123`, `thomas123`, `camille123`, `julien123`, `aline123` pour les comptes de la maquette) réservés au développement local.
 
-5. Ouvrir <http://localhost:8000>.
+## Documentation
 
-> **À savoir :** l’application propose maintenant une première liste d’annonces, une inscription et une connexion. Ces parcours nécessitent une base MySQL importée et n’ont pas encore été validés contre une instance réelle dans tous les environnements. Les comptes de démonstration du SQL utilisent les mots de passe de test historiques (`amine123`, `sarah123`, `lucas123`, `emma123`, `admin123`) ; ils sont réservés au développement local. Consultez [TODO.md](TODO.md) pour les vérifications restantes.
-
-## Contribution
-
-Consultez [CONTRIBUTING.md](CONTRIBUTING.md) pour le flux Git, les conventions de branches et les vérifications à effectuer avant une pull request.
-
-## Historique des versions
-
-Les changements notables sont consignés dans [CHANGELOG.md](CHANGELOG.md).
+- [docs/guide-mvc.md](docs/guide-mvc.md) : comprendre et étendre le MVC
+- [docs/correspondance-bdd-figma.md](docs/correspondance-bdd-figma.md) : ce que la base et la maquette ont en commun ou non
+- [docs/](docs/) : maquette Figma, diagrammes UML, MCD
+- [CHECKLIST.md](CHECKLIST.md) : tâches en cours et terminées
+- [CHANGELOG.md](CHANGELOG.md) : historique des versions
+- [CONTRIBUTING.md](CONTRIBUTING.md) : branches, commits, pull requests
 
 ## Équipe
 

@@ -8,23 +8,40 @@ Ce fichier suit les principes de [Keep a Changelog](https://keepachangelog.com/f
 
 ### Ajouté
 
-- Première page listant les annonces ouvertes, ainsi que les formulaires d'inscription et de connexion.
-- Gestion de session, jetons CSRF et déconnexion par requête POST.
-- Création de compte avec validation et stockage des mots de passe hachés.
-- Documentation de présentation et de contribution au dépôt.
-- État de la checklist projet dans `TODO.md`.
+- Liste publique des annonces ouvertes (`public/annonces.php`), inscription et connexion avec mots de passe hachés.
+- Espace utilisateur (`accueil.php`), publication, liste et modification de ses annonces (`creerAnnonce.php`, `mesAnnonces.php`, `modifierAnnonce.php`) et déconnexion, issus du travail de Saobane.
+- Architecture MVC : `model/`, `vue/`, `controleur/`, avec une page d'entrée par écran dans `public/`.
+- Écrans complémentaires pour les éléments de la base absents de la maquette (`docs/maquette/petgarden-elements-bdd-absents.pdf` et `docs/maquette/figma-import/`).
+- Documentation de présentation et de contribution au dépôt, et guide `docs/guide-mvc.md`.
+- Checklist de suivi des tâches dans `CHECKLIST.md`.
+- Dossier `docs/` pour la maquette Figma, les diagrammes UML et le MCD.
 - Modèles de pull request et de signalement de bug.
 - Configuration de base de l’éditeur et règles Git ignore.
 
-### À corriger
+### Modifié
 
-- Vérifier la connexion et les parcours PHP sur une instance MySQL locale ; voir `TODO.md`.
+- Base de données enrichie avec les éléments de la maquette Figma : profil et usage des comptes, animaux, espèces, services et tarifs, réservations, planning, messagerie, factures et paiements, statut « brouillon » des annonces. Les clés étrangères des annonces, candidatures, réservations et messages passent en `on delete cascade` pour la suppression de compte. Le fichier de démonstration reproduit les écrans de la maquette. Voir `docs/correspondance-bdd-figma.md`.
+- Fusion des travaux de Rayan et de Saobane : les fichiers de Saobane remplacent les fichiers correspondants (`config/database.php` avec la classe `Database`, modèles, contrôleurs, vues, pages de `public/`). Le dossier `modele/` devient `model/`.
+- Le schéma SQL déménage dans `database/petgarden.sql`.
+- Le serveur de développement pointe sur `public/` (`php -S localhost:8000 -t public`) et `public/index.php` redirige vers la liste des annonces.
+- Le README indique PHP 7.4 minimum (testé avec PHP 8.3).
 
 ### Corrigé
 
-- Correction de la configuration PDO et de la syntaxe de `config/ConnexionBDD.php`.
+- `public/Inscription.php` chargeait `vue/inscription.php` au lieu de `vue/Inscription.php` : erreur 500 sous Linux, où la casse compte.
+- `Utilisateur::seConnecter` comparait le mot de passe en clair alors que les comptes sont stockés hachés, ce qui empêchait toute connexion. `password_verify` est rétabli.
 - Alignement des insertions SQL avec la colonne `mdp` et hachage des mots de passe de démonstration.
-- Correction des getters de `Utilisateur` et de la table utilisée par l'authentification.
+
+### Supprimé
+
+- Ancienne structure à plat (`index.php` à la racine, `FormulaireConnexion/`, `config/ConnexionBDD.php`, `sql/`) et première version MVC de Rayan (`app/`, puis `modele/`, `noyau/`), remplacées par le code de Saobane.
+- `TODO.md` (remplacé par `CHECKLIST.md`) et `PROMPT.md` (prompt de reprise pour assistant de code, sans utilité dans le dépôt).
+- Fichiers de Saobane non repris : `public/indx.php` (vide), `public/test-inscription.php` (créait un compte à chaque visite) et `public/css` (fichier vide).
+
+### À corriger
+
+- Rétablir la protection CSRF des formulaires, présente dans la première version MVC de Rayan et absente du code de Saobane.
+- Vérifier la connexion et les parcours PHP sur une instance MySQL locale ; voir `CHECKLIST.md`.
 
 ## [0.1.0] - 2026-10-20
 

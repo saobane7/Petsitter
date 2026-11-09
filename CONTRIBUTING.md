@@ -4,7 +4,7 @@ Ce dépôt est développé en équipe par Rayan, Saobane et Predipe. Utilisez un
 
 ## Prendre une tâche
 
-1. Consultez `TODO.md` et convenez dans l’équipe de la personne responsable.
+1. Consultez `CHECKLIST.md` et convenez dans l’équipe de la personne responsable.
 2. Vérifiez que le périmètre et les fichiers concernés sont clairs.
 3. Créez une branche depuis `main` :
 
@@ -21,7 +21,7 @@ Préfixes suggérés : `feat/`, `fix/`, `docs/`, `refactor/`.
 - Gardez chaque branche centrée sur une seule tâche.
 - N’ajoutez jamais de mot de passe, clé ou donnée personnelle au dépôt. Les paramètres locaux ne doivent pas être commités.
 - Utilisez des requêtes préparées pour les entrées utilisateur et `password_hash()` / `password_verify()` pour les mots de passe.
-- Mettez à jour `README.md`, `TODO.md` ou `CHANGELOG.md` quand le changement modifie l’installation, l’état des fonctionnalités ou le comportement visible.
+- Mettez à jour `README.md`, `CHECKLIST.md` ou `CHANGELOG.md` quand le changement modifie l’installation, l’état des fonctionnalités ou le comportement visible.
 - Écrivez les messages de commit en français ou en anglais, à l’impératif, et avec un préfixe cohérent, par exemple `fix: corrige le getter prenom` ou `docs: décrit l’installation locale`.
 
 ## Vérifier et ouvrir une pull request

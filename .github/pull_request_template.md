@@ -5,7 +5,7 @@
 ## Vérifications
 
 - [ ] Vérifications effectuées (préciser lesquelles)
-- [ ] Documentation et TODO mis à jour si nécessaire
+- [ ] Documentation, CHECKLIST et CHANGELOG mis à jour si nécessaire
 - [ ] Aucun secret ni fichier local ajouté
 
 ## Relecture
