@@ -19,7 +19,6 @@ Ce fichier suit les principes de [Keep a Changelog](https://keepachangelog.com/f
 - Liste publique des annonces ouvertes (`public/annonces.php`), inscription et connexion avec mots de passe hachés.
 - Espace utilisateur (`accueil.php`), publication, liste et modification de ses annonces (`creerAnnonce.php`, `mesAnnonces.php`, `modifierAnnonce.php`) et déconnexion, issus du travail de Saobane.
 - Architecture MVC : `model/`, `vue/`, `controleur/`, avec une page d'entrée par écran dans `public/`.
-- Écrans complémentaires pour les éléments de la base absents de la maquette (`docs/maquette/petgarden-elements-bdd-absents.pdf` et `docs/maquette/figma-import/`).
 - Documentation de présentation et de contribution au dépôt, et guide `docs/guide-mvc.md`.
 - Checklist de suivi des tâches dans `CHECKLIST.md`.
 - Dossier `docs/` pour la maquette Figma, les diagrammes UML et le MCD.
