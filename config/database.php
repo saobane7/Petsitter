@@ -1,8 +1,6 @@
 <?php
 
-// connexion à la base : adapter les 4 valeurs ci-dessous si besoin
-class Database
-{
+class Database{
     private $host = 'localhost';
     private $dbname = 'petgarden';
     private $user = 'root';
@@ -10,9 +8,7 @@ class Database
 
     private static $pdo = null;
 
-    public function getConnection()
-    {
-        // une seule connexion partagée par tous les modèles d'une même page
+    public function getConnection(){
         if (self::$pdo === null) {
             try {
                 self::$pdo = new PDO(

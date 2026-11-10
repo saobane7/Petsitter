@@ -61,7 +61,6 @@ create table avis (
 
 
 
-
 insert into utilisateur (id_utilisateur, nom, prenom, email, mdp, role) values
 (1, 'diallo', 'amine', 'amine.diallo@gmail.com', '$2y$10$rXkAvLcWVhQKRCjdjJqHZO/NIbkaTc0SLXBukGsFAIV95R6bnlwo.', 'utilisateur'),
 (2, 'martin', 'sarah', 'sarah.martin@yahoo.fr', '$2y$10$XQVskydiia7LkQvC9utDOuGIbWUOmRLl0yXYFe1Ir3wZBVqBlzT2.', 'utilisateur'),
