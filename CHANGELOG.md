@@ -8,6 +8,10 @@ Ce fichier suit les principes de [Keep a Changelog](https://keepachangelog.com/f
 
 ### Ajouté
 
+- MVC complet des 13 écrans de la maquette Figma : accueil, annonces filtrables, détail et candidature, candidatures reçues avec validation d'un gardien, mes candidatures, clôture d'une garde, avis croisés propriétaire / gardien, profil public, modération des avis et gestion des comptes.
+- Vues calquées sur la maquette (Lora / Inter, palette PetGarden) avec en-tête, pied et fonctions d'affichage partagés (`vue/partials/`), feuille `public/assets/css/style.css` et script `public/assets/js/petgarden.js` (aperçu en direct, compteur, confirmations).
+- Classe `Controleur` commune : session, pages protégées, protection CSRF, messages flash.
+
 - Liste publique des annonces ouvertes (`public/annonces.php`), inscription et connexion avec mots de passe hachés.
 - Espace utilisateur (`accueil.php`), publication, liste et modification de ses annonces (`creerAnnonce.php`, `mesAnnonces.php`, `modifierAnnonce.php`) et déconnexion, issus du travail de Saobane.
 - Architecture MVC : `model/`, `vue/`, `controleur/`, avec une page d'entrée par écran dans `public/`.
@@ -20,6 +24,9 @@ Ce fichier suit les principes de [Keep a Changelog](https://keepachangelog.com/f
 
 ### Modifié
 
+- Noms de fichiers en minuscules (`connexion.php`, `mes_annonces.php`, `model/annonce.php`…) et SQL des modèles en minuscules.
+- `public/index.php` affiche la page d'accueil de la maquette au lieu de rediriger vers les annonces ; l'ancien « Mon espace » est remplacé par le profil.
+
 - Base de données enrichie avec les éléments de la maquette Figma : profil et usage des comptes, animaux, espèces, services et tarifs, réservations, planning, messagerie, factures et paiements, statut « brouillon » des annonces. Les clés étrangères des annonces, candidatures, réservations et messages passent en `on delete cascade` pour la suppression de compte. Le fichier de démonstration reproduit les écrans de la maquette. Voir `docs/correspondance-bdd-figma.md`.
 - Fusion des travaux de Rayan et de Saobane : les fichiers de Saobane remplacent les fichiers correspondants (`config/database.php` avec la classe `Database`, modèles, contrôleurs, vues, pages de `public/`). Le dossier `modele/` devient `model/`.
 - Le schéma SQL déménage dans `database/petgarden.sql`.
@@ -27,6 +34,9 @@ Ce fichier suit les principes de [Keep a Changelog](https://keepachangelog.com/f
 - Le README indique PHP 7.4 minimum (testé avec PHP 8.3).
 
 ### Corrigé
+
+- `database/petgarden.sql` ne s'importait pas : les tables étaient créées en `annonce` / `candidature` mais référencées en `annonces` / `candidatures`. Le nom et le prénom des comptes de démonstration étaient inversés.
+- Les modèles utilisaient la colonne `id` alors que la base utilise `id_utilisateur` et `id_annonce`.
 
 - `public/Inscription.php` chargeait `vue/inscription.php` au lieu de `vue/Inscription.php` : erreur 500 sous Linux, où la casse compte.
 - `Utilisateur::seConnecter` comparait le mot de passe en clair alors que les comptes sont stockés hachés, ce qui empêchait toute connexion. `password_verify` est rétabli.
@@ -38,10 +48,6 @@ Ce fichier suit les principes de [Keep a Changelog](https://keepachangelog.com/f
 - `TODO.md` (remplacé par `CHECKLIST.md`) et `PROMPT.md` (prompt de reprise pour assistant de code, sans utilité dans le dépôt).
 - Fichiers de Saobane non repris : `public/indx.php` (vide), `public/test-inscription.php` (créait un compte à chaque visite) et `public/css` (fichier vide).
 
-### À corriger
-
-- Rétablir la protection CSRF des formulaires, présente dans la première version MVC de Rayan et absente du code de Saobane.
-- Vérifier la connexion et les parcours PHP sur une instance MySQL locale ; voir `CHECKLIST.md`.
 
 ## [0.1.0] - 2026-10-20
 

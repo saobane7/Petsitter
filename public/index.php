@@ -1,5 +1,11 @@
 <?php
 
-// page d'accueil du site : redirige vers la liste des annonces
-header('Location: annonces.php');
-exit;
+require_once __DIR__ . '/../controleur/annonce_controller.php';
+
+$controleur = new AnnonceController();
+$donnees = $controleur->accueil();
+
+// rend disponibles dans la vue les variables retournées par le contrôleur ($annonces, $erreurs...)
+extract($donnees);
+
+require __DIR__ . '/../vue/accueil.php';

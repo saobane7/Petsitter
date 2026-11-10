@@ -14,7 +14,7 @@ create table utilisateur (
     constraint pk_utilisateur primary key (id_utilisateur)
 );
 
-create table annonce (
+create table annonces (
     id_annonce int auto_increment,
     titre varchar(150) not null,
     type_animal varchar(200) not null,
@@ -29,7 +29,7 @@ create table annonce (
     constraint chk_dates_annonce check (date_fin >= date_debut)
 );
 
-create table candidature (
+create table candidatures (
     id_candidature int auto_increment,
     message text not null,
     statut enum('en attente', 'acceptee', 'refusee') not null default 'en attente',
@@ -63,11 +63,11 @@ create table avis (
 
 
 insert into utilisateur (id_utilisateur, nom, prenom, email, mdp, role) values
-(1, 'amine', 'diallo', 'amine.diallo@gmail.com', '$2y$10$rXkAvLcWVhQKRCjdjJqHZO/NIbkaTc0SLXBukGsFAIV95R6bnlwo.', 'utilisateur'),
-(2, 'sarah', 'martin', 'sarah.martin@yahoo.fr', '$2y$10$XQVskydiia7LkQvC9utDOuGIbWUOmRLl0yXYFe1Ir3wZBVqBlzT2.', 'utilisateur'),
-(3, 'lucas', 'bernard', 'lucas.bernard@outlook.com', '$2y$10$OUYS4yLhBVK0CyOjJQ9agudq82e2PT7WxSjSXVoQ.cZzb.OsmpCjO', 'utilisateur'),
-(4, 'emma', 'petit', 'emma.petit@gmail.com', '$2y$10$JqOxf0ITdtrSZ4TgXh29fuYPz4Uok7EwKmzly.IxGqyu/0yEN/zLi', 'utilisateur'),
-(5, 'admin', 'petsitter', 'admin.petsitter@yahoo.fr', '$2y$10$KTFCNStz32k0n1WxmCOF1e1nKMzVLZ/m8Y8FRQ7kmbPEUpuUt6gE2', 'admin');
+(1, 'diallo', 'amine', 'amine.diallo@gmail.com', '$2y$10$rXkAvLcWVhQKRCjdjJqHZO/NIbkaTc0SLXBukGsFAIV95R6bnlwo.', 'utilisateur'),
+(2, 'martin', 'sarah', 'sarah.martin@yahoo.fr', '$2y$10$XQVskydiia7LkQvC9utDOuGIbWUOmRLl0yXYFe1Ir3wZBVqBlzT2.', 'utilisateur'),
+(3, 'bernard', 'lucas', 'lucas.bernard@outlook.com', '$2y$10$OUYS4yLhBVK0CyOjJQ9agudq82e2PT7WxSjSXVoQ.cZzb.OsmpCjO', 'utilisateur'),
+(4, 'petit', 'emma', 'emma.petit@gmail.com', '$2y$10$JqOxf0ITdtrSZ4TgXh29fuYPz4Uok7EwKmzly.IxGqyu/0yEN/zLi', 'utilisateur'),
+(5, 'petsitter', 'admin', 'admin.petsitter@yahoo.fr', '$2y$10$KTFCNStz32k0n1WxmCOF1e1nKMzVLZ/m8Y8FRQ7kmbPEUpuUt6gE2', 'admin');
 
 insert into annonces (id_annonce, titre, type_animal, ville, date_debut, date_fin, description, statut, id_proprietaire) values
 (1, 'garde de mon chien', 'chien', 'saint-denis', '2026-11-01', '2026-11-05', 'promenade quotidienne necessaire.', 'ouverte', 1),

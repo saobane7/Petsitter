@@ -6,8 +6,6 @@ Une tâche terminée reste visible dans « Terminé » (la déplacer à la main)
 
 ## À faire
 
-- [ ] 
-- [ ] Rétablir la protection CSRF des formulaires (perdue lors de la fusion)
 - [ ] Valider avec l'équipe les écrans complémentaires et les tables `facture` et `paiement`
 
 ## En cours
@@ -21,3 +19,6 @@ Une tâche terminée reste visible dans « Terminé » (la déplacer à la main)
 - [x] Publication, liste et modification de ses annonces
 - [x] Base de données enrichie avec les éléments de la maquette
 - [x] Écrans complémentaires pour les éléments de la base absents du Figma
+- [x] Rétablir la protection CSRF des formulaires
+- [x] MVC complet des 13 écrans Figma : candidatures, avis, profil public, administration
+- [x] Vues et CSS calqués sur la maquette Figma
