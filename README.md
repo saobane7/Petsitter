@@ -64,8 +64,8 @@ Pour ajouter une page, voir le [guide MVC](docs/guide-mvc.md).
 5. Ouvrir <http://localhost:8000> (page d'accueil).
 
 > Comptes de démonstration (développement local uniquement) : 
-- utilisateur : `amine.diallo@gmail.com` / `amine123` 
-- administrateur : `admin.petsitter@yahoo.fr` / `admin123`.
+- Utilisateur : `amine.diallo@gmail.com` / `amine123` 
+- Administrateur : `admin.petsitter@yahoo.fr` / `admin123`
 
 ## Documentation
 
