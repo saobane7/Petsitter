@@ -63,3 +63,4 @@ Ce fichier suit les principes de [Keep a Changelog](https://keepachangelog.com/f
 
 - Première structure PHP organisée autour de configuration, modèles, formulaires et vues.
 - Script SQL initial avec les tables utilisateurs, annonces, candidatures et avis.
+- `index.php` à la racine du projet : il redirige vers `public/`, pour que le site s'affiche directement à l'adresse du projet (`http://localhost:8888/Petsitter/`) sans modifier la racine web.
