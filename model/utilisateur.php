@@ -23,7 +23,7 @@ class Utilisateur
     public function trouverParId($id)
     {
         $requete = $this->pdo->prepare(
-            'select id_utilisateur, nom, prenom, email, role
+            'select id_utilisateur, nom, prenom, email, role, actif
              from utilisateur
              where id_utilisateur = :id'
         );
@@ -83,7 +83,7 @@ class Utilisateur
     public function listerTous()
     {
         $requete = $this->pdo->query(
-            "select u.id_utilisateur, u.nom, u.prenom, u.email, u.role,
+            "select u.id_utilisateur, u.nom, u.prenom, u.email, u.role, u.actif,
                     (select count(*) from annonces as a where a.id_proprietaire = u.id_utilisateur) as nb_annonces,
                     (select round(avg(v.note), 1) from avis as v where v.id_cible = u.id_utilisateur) as note_moyenne
              from utilisateur as u
@@ -102,6 +102,13 @@ class Utilisateur
     {
         $requete = $this->pdo->prepare('update utilisateur set role = :role where id_utilisateur = :id');
         $requete->execute(['role' => $role, 'id' => $id]);
+    }
+
+    // suspendre (actif = 0) ou réactiver (actif = 1) un compte
+    public function changerActif($id, $actif)
+    {
+        $requete = $this->pdo->prepare('update utilisateur set actif = :actif where id_utilisateur = :id');
+        $requete->execute(['actif' => $actif ? 1 : 0, 'id' => $id]);
     }
 
     // les clés étrangères sont en "on delete restrict" : on supprime d'abord tout ce qui dépend du compte

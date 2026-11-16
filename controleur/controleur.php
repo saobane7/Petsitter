@@ -11,6 +11,30 @@ class Controleur
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
+
+        $this->verifierCompte();
+    }
+
+    // à chaque page, on relit le compte en base : s'il a été suspendu ou supprimé
+    // pendant que l'utilisateur était connecté, la session est fermée tout de suite
+    // (le rôle est aussi mis à jour si un admin l'a modifié)
+    private function verifierCompte()
+    {
+        if (!isset($_SESSION['id_utilisateur'])) {
+            return;
+        }
+
+        require_once __DIR__ . '/../model/utilisateur.php';
+        $utilisateurModel = new Utilisateur();
+        $compte = $utilisateurModel->trouverParId($_SESSION['id_utilisateur']);
+
+        if ($compte === false || !$compte['actif']) {
+            $_SESSION = ['erreur_connexion' => $compte === false ? "Ce compte n'existe plus." : 'Ce compte est suspendu.'];
+            session_regenerate_id(true);
+            $this->rediriger('connexion.php');
+        }
+
+        $_SESSION['role'] = $compte['role'];
     }
 
     // utilisateur connecté (id, prénom, nom, rôle) ou null

@@ -30,7 +30,7 @@ class AdminController extends Controleur
         ]);
     }
 
-    // écran 12 : comptes utilisateurs (changement de rôle, suppression)
+    // écran 12 : comptes utilisateurs (changement de rôle, suspension, suppression)
     public function comptes()
     {
         $idAdmin = $this->exigerAdmin();
@@ -48,6 +48,12 @@ class AdminController extends Controleur
                         $utilisateurModel->changerRole($idCompte, $role);
                         $this->flash('Le rôle du compte a été modifié.');
                     }
+                } elseif ($action === 'suspendre') {
+                    $utilisateurModel->changerActif($idCompte, false);
+                    $this->flash('Le compte a été suspendu.');
+                } elseif ($action === 'reactiver') {
+                    $utilisateurModel->changerActif($idCompte, true);
+                    $this->flash('Le compte a été réactivé.');
                 } elseif ($action === 'supprimer') {
                     $utilisateurModel->supprimer($idCompte);
                     $this->flash('Le compte et ses données ont été supprimés.');

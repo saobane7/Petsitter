@@ -16,7 +16,14 @@ class UtilisateurController extends Controleur
         $erreurs = [];
         $email = '';
 
+        // message laissé par verifierCompte() quand un compte connecté vient d'être suspendu
+        if (isset($_SESSION['erreur_connexion'])) {
+            $erreurs[] = $_SESSION['erreur_connexion'];
+            unset($_SESSION['erreur_connexion']);
+        }
+
         if ($this->estPost()) {
+            $erreurs = [];
             $email = $this->texte($_POST, 'email');
             $mdp = $_POST['mdp'] ?? '';
 
@@ -33,6 +40,8 @@ class UtilisateurController extends Controleur
 
                 if ($utilisateur === false) {
                     $erreurs[] = "L'adresse e-mail ou le mot de passe est incorrect.";
+                } elseif (!$utilisateur['actif']) {
+                    $erreurs[] = 'Ce compte est suspendu.';
                 } else {
                     session_regenerate_id(true);
                     $_SESSION['id_utilisateur'] = (int) $utilisateur['id_utilisateur'];
