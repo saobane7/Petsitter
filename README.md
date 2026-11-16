@@ -2,8 +2,6 @@
 
 Petgarden est un projet étudiant de site de garde d'animaux (pet sitting). Il met en relation des propriétaires et des gardiens autour d'annonces de garde, de candidatures et d'avis.
 
-> **État du projet :** les 13 écrans de la maquette Figma sont implémentés en MVC et testés sur MariaDB 10.11 / PHP 8.3. Voir [CHECKLIST.md](CHECKLIST.md).
-
 ## Fonctionnalités
 
 - Comptes : inscription, connexion, déconnexion, profil public (note moyenne, gardes réalisées, avis reçus)
@@ -65,7 +63,9 @@ Pour ajouter une page, voir le [guide MVC](docs/guide-mvc.md).
 
 5. Ouvrir <http://localhost:8000> (page d'accueil).
 
-> Comptes de démonstration (développement local uniquement) : `amine.diallo@gmail.com` / `amine123`, `sarah.martin@yahoo.fr` / `sarah123`, `lucas.bernard@outlook.com` / `lucas123`, `emma.petit@gmail.com` / `emma123`, et l'administrateur `admin.petsitter@yahoo.fr` / `admin123`.
+> Comptes de démonstration (développement local uniquement) : 
+- utilisateur : `amine.diallo@gmail.com` / `amine123` 
+- administrateur : `admin.petsitter@yahoo.fr` / `admin123`.
 
 ## Documentation
 
@@ -77,6 +77,6 @@ Pour ajouter une page, voir le [guide MVC](docs/guide-mvc.md).
 
 ## Équipe
 
-- Rayan
-- Saobane
-- Predipe
+- Rayan BENNACEUR
+- Saobane LIAMIDI
+- Predipe DOURERADJOU
