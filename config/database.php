@@ -2,9 +2,9 @@
 
 class Database{
     private $host = 'localhost';
-    private $dbname = 'petgarden';
+    private $dbname = 'petgarden_2';
     private $user = 'root';
-    private $mdp = 'root';
+    private $mdp = '';
 
     private static $pdo = null;
 

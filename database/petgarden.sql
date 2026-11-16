@@ -1,8 +1,8 @@
-drop database if exists petgarden;
-create database petgarden
+drop database if exists petgarden_2;
+create database petgarden_2
 character set utf8mb4
 collate utf8mb4_unicode_ci;
-use petgarden;
+use petgarden_2;
 
 create table utilisateur (
     id_utilisateur int auto_increment,

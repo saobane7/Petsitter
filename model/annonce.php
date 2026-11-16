@@ -19,6 +19,7 @@ class Annonce
                 from annonces as a
                 inner join utilisateur as u on u.id_utilisateur = a.id_proprietaire
                 where a.statut = 'ouverte'";
+
         $parametres = [];
 
         if ($typeAnimal !== '') {
@@ -52,6 +53,7 @@ class Annonce
              inner join utilisateur as u on u.id_utilisateur = a.id_proprietaire
              where a.id_annonce = :id'
         );
+
         $requete->execute(['id' => $idAnnonce]);
 
         return $requete->fetch();
@@ -64,7 +66,11 @@ class Annonce
              where id_annonce = :id
              and id_proprietaire = :id_proprietaire'
         );
-        $requete->execute(['id' => $idAnnonce, 'id_proprietaire' => $idProprietaire]);
+
+        $requete->execute([
+            'id' => $idAnnonce,
+            'id_proprietaire' => $idProprietaire
+        ]);
 
         return $requete->fetch();
     }
@@ -73,15 +79,25 @@ class Annonce
     public function trouverParProprietaire($idProprietaire, $statut = '')
     {
         $sql = "select a.*,
-                       (select count(*) from candidatures as c where c.id_annonce = a.id_annonce) as nb_candidatures,
-                       g.id_utilisateur as id_gardien, g.prenom as prenom_gardien, g.nom as nom_gardien,
+                       (select count(*) from candidatures as c
+                        where c.id_annonce = a.id_annonce) as nb_candidatures,
+                       g.id_utilisateur as id_gardien,
+                       g.prenom as prenom_gardien,
+                       g.nom as nom_gardien,
                        (select count(*) from avis as v
-                        where v.id_annonce = a.id_annonce and v.id_auteur = a.id_proprietaire) as avis_laisse
+                        where v.id_annonce = a.id_annonce
+                        and v.id_auteur = a.id_proprietaire) as avis_laisse
                 from annonces as a
-                left join candidatures as ca on ca.id_annonce = a.id_annonce and ca.statut = 'acceptee'
-                left join utilisateur as g on g.id_utilisateur = ca.id_gardien
+                left join candidatures as ca
+                    on ca.id_annonce = a.id_annonce
+                    and ca.statut = 'acceptee'
+                left join utilisateur as g
+                    on g.id_utilisateur = ca.id_gardien
                 where a.id_proprietaire = :id_proprietaire";
-        $parametres = ['id_proprietaire' => $idProprietaire];
+
+        $parametres = [
+            'id_proprietaire' => $idProprietaire
+        ];
 
         if ($statut !== '') {
             $sql .= ' and a.statut = :statut';
@@ -105,9 +121,17 @@ class Annonce
              where id_proprietaire = :id_proprietaire
              group by statut'
         );
-        $requete->execute(['id_proprietaire' => $idProprietaire]);
 
-        $compteurs = ['ouverte' => 0, 'pourvue' => 0, 'terminee' => 0];
+        $requete->execute([
+            'id_proprietaire' => $idProprietaire
+        ]);
+
+        $compteurs = [
+            'ouverte' => 0,
+            'pourvue' => 0,
+            'terminee' => 0
+        ];
+
         foreach ($requete->fetchAll() as $ligne) {
             $compteurs[$ligne['statut']] = (int) $ligne['total'];
         }
@@ -119,17 +143,25 @@ class Annonce
     public function gardienLePlusSollicite($idProprietaire)
     {
         $requete = $this->pdo->prepare(
-            "select u.id_utilisateur, u.prenom, u.nom, count(*) as nb_gardes
+            "select u.id_utilisateur,
+                    u.prenom,
+                    u.nom,
+                    count(*) as nb_gardes
              from candidatures as c
-             inner join annonces as a on a.id_annonce = c.id_annonce
-             inner join utilisateur as u on u.id_utilisateur = c.id_gardien
+             inner join annonces as a
+                on a.id_annonce = c.id_annonce
+             inner join utilisateur as u
+                on u.id_utilisateur = c.id_gardien
              where a.id_proprietaire = :id_proprietaire
              and c.statut = 'acceptee'
              group by u.id_utilisateur, u.prenom, u.nom
              order by nb_gardes desc
              limit 1"
         );
-        $requete->execute(['id_proprietaire' => $idProprietaire]);
+
+        $requete->execute([
+            'id_proprietaire' => $idProprietaire
+        ]);
 
         return $requete->fetch();
     }
@@ -142,6 +174,7 @@ class Annonce
              values
              (:titre, :type_animal, :ville, :date_debut, :date_fin, :description, :id_proprietaire)'
         );
+
         $requete->execute([
             'titre' => $titre,
             'type_animal' => $typeAnimal,
@@ -149,7 +182,7 @@ class Annonce
             'date_debut' => $dateDebut,
             'date_fin' => $dateFin,
             'description' => $description,
-            'id_proprietaire' => $idProprietaire,
+            'id_proprietaire' => $idProprietaire
         ]);
 
         return (int) $this->pdo->lastInsertId();
@@ -168,6 +201,7 @@ class Annonce
              where id_annonce = :id
              and id_proprietaire = :id_proprietaire'
         );
+
         $requete->execute([
             'titre' => $titre,
             'type_animal' => $typeAnimal,
@@ -176,11 +210,11 @@ class Annonce
             'date_fin' => $dateFin,
             'description' => $description,
             'id' => $idAnnonce,
-            'id_proprietaire' => $idProprietaire,
+            'id_proprietaire' => $idProprietaire
         ]);
     }
 
-    // passe une annonce d'un statut à un autre (ex. pourvue -> terminee), seulement pour son propriétaire
+    // passe une annonce d'un statut à un autre, seulement pour son propriétaire
     public function changerStatut($idAnnonce, $idProprietaire, $ancienStatut, $nouveauStatut)
     {
         $requete = $this->pdo->prepare(
@@ -190,11 +224,12 @@ class Annonce
              and id_proprietaire = :id_proprietaire
              and statut = :ancien'
         );
+
         $requete->execute([
             'nouveau' => $nouveauStatut,
             'id' => $idAnnonce,
             'id_proprietaire' => $idProprietaire,
-            'ancien' => $ancienStatut,
+            'ancien' => $ancienStatut
         ]);
 
         return $requete->rowCount() === 1;
@@ -203,6 +238,8 @@ class Annonce
     // administration : nombre de gardes terminées
     public function compterTerminees()
     {
-        return (int) $this->pdo->query("select count(*) from annonces where statut = 'terminee'")->fetchColumn();
+        return (int) $this->pdo
+            ->query("select count(*) from annonces where statut = 'terminee'")
+            ->fetchColumn();
     }
 }

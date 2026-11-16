@@ -35,6 +35,8 @@ class Controleur
         }
 
         $_SESSION['role'] = $compte['role'];
+        $_SESSION['nom'] = $compte['nom'];
+        $_SESSION['prenom'] = $compte['prenom'];
     }
 
     // utilisateur connecté (id, prénom, nom, rôle) ou null
