@@ -19,7 +19,7 @@ Objectif : empêcher la connexion d'un compte suspendu et le piloter depuis le b
 - [ ] Créer `UserChecker` et le déclarer dans `security.yaml` (`user_checker` sur le firewall `main`)
 - [x] Ajouter la route `POST /admin/utilisateurs/{id}/suspendre` avec jeton CSRF
 - [x] Tester : un compte suspendu voit « Ce compte est suspendu » au moment de se connecter
-- [x] Discussion : que se passe-t-il pour un utilisateur déjà connecté au moment de la suspension ?
+- [x] Discussion : que se passe-t-il pour un utilisateur déjà connecté au moment de la suspension ? -> déconnectée dès sa page suivante
 
 ### Recherche, pagination et export
 
