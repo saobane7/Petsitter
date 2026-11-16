@@ -15,11 +15,11 @@ Une tâche terminée reste visible dans « Terminé » (la déplacer à la main)
 
 Objectif : empêcher la connexion d'un compte suspendu et le piloter depuis le back-office.
 
-- [ ] Ajouter un champ `actif` (booléen, vrai par défaut) sur `Utilisateur`, puis générer la migration
+- [x] Ajouter un champ `actif` (booléen, vrai par défaut) sur `Utilisateur`, puis générer la migration
 - [ ] Créer `UserChecker` et le déclarer dans `security.yaml` (`user_checker` sur le firewall `main`)
-- [ ] Ajouter la route `POST /admin/utilisateurs/{id}/suspendre` avec jeton CSRF
-- [ ] Tester : un compte suspendu voit « Ce compte est suspendu » au moment de se connecter
-- [ ] Discussion : que se passe-t-il pour un utilisateur déjà connecté au moment de la suspension ?
+- [x] Ajouter la route `POST /admin/utilisateurs/{id}/suspendre` avec jeton CSRF
+- [x] Tester : un compte suspendu voit « Ce compte est suspendu » au moment de se connecter
+- [x] Discussion : que se passe-t-il pour un utilisateur déjà connecté au moment de la suspension ?
 
 ### Recherche, pagination et export
 
