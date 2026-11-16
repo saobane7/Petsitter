@@ -4,7 +4,7 @@ class Database{
     private $host = 'localhost';
     private $dbname = 'petgarden';
     private $user = 'root';
-    private $mdp = '';
+    private $mdp = 'root';
 
     private static $pdo = null;
 
