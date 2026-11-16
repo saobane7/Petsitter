@@ -64,3 +64,4 @@ Ce fichier suit les principes de [Keep a Changelog](https://keepachangelog.com/f
 - Script SQL initial avec les tables utilisateurs, annonces, candidatures et avis.
 - `index.php` à la racine du projet : il redirige vers `public/`, pour que le site s'affiche directement à l'adresse du projet (`http://localhost:8888/Petsitter/`) sans modifier la racine web.
 - Suspension des comptes par l'administrateur (page Comptes) : suspendre, réactiver ou supprimer un compte. Un compte suspendu ne peut plus se connecter (« Ce compte est suspendu ») et, s'il était déjà connecté, sa session est fermée dès la page suivante.
+- `database/migration_actif.sql` : ajoute la colonne `actif` à une base déjà importée, nécessaire à la suspension des comptes.
