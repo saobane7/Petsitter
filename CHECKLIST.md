@@ -10,7 +10,6 @@ Une tâche terminée reste visible dans « Terminé » (la déplacer à la main)
 
 - [ ] Pousser le code de chaque module sur sa branche `feature/<module>` (une seule branche `feature` existe pour l'instant)
 - [ ] Chaque étudiant sait expliquer, en une phrase, ce que fait chaque méthode de son modèle
-- [ ] Valider avec l'équipe les écrans complémentaires et les tables `facture` et `paiement` (la base actuelle n'a que 4 tables)
 
 ### Modération : suspendre un utilisateur
 
@@ -64,7 +63,7 @@ Objectif : assembler les trois fonctions sur la liste des annonces du back-offic
 - [x] Candidatures : postuler, candidatures reçues, validation d'un gardien, mes candidatures
 - [x] Clôture d'une garde et avis croisés propriétaire / gardien
 - [x] Profil public : note moyenne, gardes réalisées, avis reçus
-- [x] Administration : modération des avis, rôles et suppression des comptes
+- [x] Administration : modération des avis, rôles suspension et suppression des comptes
 - [x] Protection CSRF de tous les formulaires
 - [x] Vues et CSS calqués sur les 13 écrans de la maquette Figma
 - [x] Noms de fichiers et SQL en minuscules

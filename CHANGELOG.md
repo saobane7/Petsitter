@@ -53,7 +53,6 @@ Ce fichier suit les principes de [Keep a Changelog](https://keepachangelog.com/f
 
 ### Prévu
 
-- Suspension d'un compte depuis le back-office : champ `actif`, refus de connexion avec le message « Ce compte est suspendu ».
 - Back-office des annonces : filtres (ville, statut, mot-clé), pagination et export qui conserve les filtres.
 - Ces deux fonctions sont prévues en Symfony (`security.yaml`, `UserChecker`, Twig) ; le détail est dans `CHECKLIST.md`.
 
@@ -64,3 +63,4 @@ Ce fichier suit les principes de [Keep a Changelog](https://keepachangelog.com/f
 - Première structure PHP organisée autour de configuration, modèles, formulaires et vues.
 - Script SQL initial avec les tables utilisateurs, annonces, candidatures et avis.
 - `index.php` à la racine du projet : il redirige vers `public/`, pour que le site s'affiche directement à l'adresse du projet (`http://localhost:8888/Petsitter/`) sans modifier la racine web.
+- Suspension des comptes par l'administrateur (page Comptes) : suspendre, réactiver ou supprimer un compte. Un compte suspendu ne peut plus se connecter (« Ce compte est suspendu ») et, s'il était déjà connecté, sa session est fermée dès la page suivante.
