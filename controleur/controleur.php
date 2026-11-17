@@ -82,18 +82,27 @@ class Controleur
         exit;
     }
 
-    protected function introuvable()
+    // affiche la page d'erreur 404 : page ou ressource introuvable
+    // $message (facultatif) précise ce qui manque, ex. "annonce introuvable."
+    protected function introuvable($message = '')
     {
         http_response_code(404);
-        require __DIR__ . '/../vue/erreurs/404.php';
-        exit;
+        $this->afficherErreur('404', $message);
     }
 
     // affiche la page d'erreur 403 : accès interdit
-    protected function interdit()
+    protected function interdit($message = '')
     {
         http_response_code(403);
-        require __DIR__ . '/../vue/erreurs/403.php';
+        $this->afficherErreur('403', $message);
+    }
+
+    // les pages d'erreur utilisent l'en-tête et le pied communs : elles ont besoin
+    // des mêmes variables que les autres vues ($connecte, $flash, $csrf…)
+    private function afficherErreur($code, $message)
+    {
+        extract($this->vue(['message_erreur' => $message]));
+        require __DIR__ . '/../vue/erreurs/' . $code . '.php';
         exit;
     }
 
