@@ -16,7 +16,8 @@ require __DIR__ . '/partials/entete.php';
             <?php require __DIR__ . '/partials/csrf.php'; ?>
 
             <label for="email">Adresse e-mail</label>
-            <input type="email" id="email" name="email" value="<?= e($email) ?>" placeholder="vous@exemple.fr" required autocomplete="email">
+           <!-- <input type="email" id="email" name="email" value="<?= e($email) ?>" placeholder="vous@exemple.fr" required autocomplete="email" !-->
+            <input type="email" id="email" name="email" value="<?= htmlspecialchars($email ?? '', ENT_QUOTES, 'UTF-8') ?>" placeholder="vous@exemple.fr" required autocomplete="email">
 
             <label for="mdp">Mot de passe</label>
             <input type="password" id="mdp" name="mdp" placeholder="••••••••" required autocomplete="current-password">

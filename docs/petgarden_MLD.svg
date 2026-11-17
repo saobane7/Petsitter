@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 740" width="1120" height="740" font-family="Arial, Helvetica, sans-serif" xmlns:c2pa="http://c2pa.org/manifest">
+  <defs>
+    <marker id="bl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>
+    <marker id="gr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker>
+    <marker id="pu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#7c3aed"/></marker>
+    <marker id="rd" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker>
+    <marker id="or" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#ea580c"/></marker>
+    <marker id="te" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0891b2"/></marker>
+  </defs>
+  <style>
+    .box { fill:#ffffff; stroke:#1f2937; stroke-width:2; }
+    .hd { fill:#1e40af; }
+    .ht { font-size:15px; font-weight:bold; fill:#ffffff; text-anchor:middle; }
+    .pkrow { fill:#eff6ff; }
+    .fkrow { fill:#fff7ed; }
+    .sep { stroke:#d1d5db; stroke-width:1; }
+    .badge { font-size:10px; font-weight:bold; }
+    .pkb { fill:#1d4ed8; }
+    .fkb { fill:#c2410c; }
+    .col { font-size:13px; fill:#111827; }
+    .pkc { font-size:13px; fill:#111827; font-weight:bold; text-decoration:underline; }
+    .ty { font-size:11px; fill:#6b7280; text-anchor:end; }
+    .ft { font-size:11px; fill:#4b5563; font-style:italic; }
+    .al { font-size:11px; font-weight:bold; }
+    .ar { fill:none; stroke-width:1.8; }
+  </style>
+
+  <!-- ========== UTILISATEUR ========== -->
+  <rect class="box" x="410" y="40" width="280" height="202"/>
+  <rect class="hd" x="410" y="40" width="280" height="34"/>
+  <text class="ht" x="550" y="63">UTILISATEUR</text>
+  <rect class="pkrow" x="411" y="74" width="278" height="24"/>
+  <text class="badge pkb" x="420" y="90">PK</text><text class="pkc" x="448" y="90">id_utilisateur</text><text class="ty" x="680" y="90">INT AUTO_INCREMENT</text>
+  <text class="col" x="448" y="114">nom</text><text class="ty" x="680" y="114">VARCHAR(50) NN</text>
+  <text class="col" x="448" y="138">prenom</text><text class="ty" x="680" y="138">VARCHAR(50) NN</text>
+  <text class="col" x="448" y="162">email</text><text class="ty" x="680" y="162">VARCHAR(150) UNIQUE</text>
+  <text class="col" x="448" y="186">mdp</text><text class="ty" x="680" y="186">VARCHAR(255) NN</text>
+  <text class="col" x="448" y="210">role</text><text class="ty" x="680" y="210">ENUM DEFAULT 'utilisateur'</text>
+  <text class="col" x="448" y="234">actif</text><text class="ty" x="680" y="234">BOOLEAN DEFAULT true</text>
+
+  <!-- ========== CANDIDATURES ========== -->
+  <rect class="box" x="30" y="40" width="280" height="178"/>
+  <rect class="hd" x="30" y="40" width="280" height="34"/>
+  <text class="ht" x="170" y="63">CANDIDATURES</text>
+  <rect class="pkrow" x="31" y="74" width="278" height="24"/>
+  <text class="badge pkb" x="40" y="90">PK</text><text class="pkc" x="68" y="90">id_candidature</text><text class="ty" x="300" y="90">INT AI</text>
+  <text class="col" x="68" y="114">message</text><text class="ty" x="300" y="114">TEXT NN</text>
+  <text class="col" x="68" y="138">statut</text><text class="ty" x="300" y="138">ENUM DEFAULT 'en attente'</text>
+  <text class="col" x="68" y="162">date_candidature</text><text class="ty" x="300" y="162">DATETIME</text>
+  <rect class="fkrow" x="31" y="170" width="278" height="24"/>
+  <text class="badge fkb" x="40" y="186">FK</text><text class="col" x="68" y="186">id_annonce</text><text class="ty" x="300" y="186">INT NN</text>
+  <rect class="fkrow" x="31" y="194" width="278" height="24"/>
+  <text class="badge fkb" x="40" y="210">FK</text><text class="col" x="68" y="210">id_gardien</text><text class="ty" x="300" y="210">INT NN</text>
+  <text class="ft" x="30" y="238">UNIQUE (id_annonce, id_gardien)</text>
+
+  <!-- ========== ANNONCES ========== -->
+  <rect class="box" x="790" y="40" width="300" height="250"/>
+  <rect class="hd" x="790" y="40" width="300" height="34"/>
+  <text class="ht" x="940" y="63">ANNONCES</text>
+  <rect class="pkrow" x="791" y="74" width="298" height="24"/>
+  <text class="badge pkb" x="800" y="90">PK</text><text class="pkc" x="828" y="90">id_annonce</text><text class="ty" x="1080" y="90">INT AI</text>
+  <text class="col" x="828" y="114">titre</text><text class="ty" x="1080" y="114">VARCHAR(150) NN</text>
+  <text class="col" x="828" y="138">type_animal</text><text class="ty" x="1080" y="138">VARCHAR(200) NN</text>
+  <text class="col" x="828" y="162">ville</text><text class="ty" x="1080" y="162">VARCHAR(100) NN</text>
+  <text class="col" x="828" y="186">date_debut</text><text class="ty" x="1080" y="186">DATE NN</text>
+  <text class="col" x="828" y="210">date_fin</text><text class="ty" x="1080" y="210">DATE NN</text>
+  <text class="col" x="828" y="234">description</text><text class="ty" x="1080" y="234">TEXT</text>
+  <text class="col" x="828" y="258">statut</text><text class="ty" x="1080" y="258">ENUM DEFAULT 'ouverte'</text>
+  <rect class="fkrow" x="791" y="266" width="298" height="24"/>
+  <text class="badge fkb" x="800" y="282">FK</text><text class="col" x="828" y="282">id_proprietaire</text><text class="ty" x="1080" y="282">INT NN</text>
+  <text class="ft" x="790" y="310">CHECK (date_fin &gt;= date_debut)</text>
+
+  <!-- ========== AVIS ========== -->
+  <rect class="box" x="410" y="400" width="280" height="202"/>
+  <rect class="hd" x="410" y="400" width="280" height="34"/>
+  <text class="ht" x="550" y="423">AVIS</text>
+  <rect class="pkrow" x="411" y="434" width="278" height="24"/>
+  <text class="badge pkb" x="420" y="450">PK</text><text class="pkc" x="448" y="450">id_avis</text><text class="ty" x="680" y="450">INT AI</text>
+  <rect class="fkrow" x="411" y="458" width="278" height="24"/>
+  <text class="badge fkb" x="420" y="474">FK</text><text class="col" x="448" y="474">id_annonce</text><text class="ty" x="680" y="474">INT NN</text>
+  <rect class="fkrow" x="411" y="482" width="278" height="24"/>
+  <text class="badge fkb" x="420" y="498">FK</text><text class="col" x="448" y="498">id_auteur</text><text class="ty" x="680" y="498">INT NN</text>
+  <rect class="fkrow" x="411" y="506" width="278" height="24"/>
+  <text class="badge fkb" x="420" y="522">FK</text><text class="col" x="448" y="522">id_cible</text><text class="ty" x="680" y="522">INT NN</text>
+  <text class="col" x="448" y="546">note</text><text class="ty" x="680" y="546">TINYINT UNSIGNED NN</text>
+  <text class="col" x="448" y="570">commentaire</text><text class="ty" x="680" y="570">VARCHAR(150)</text>
+  <text class="col" x="448" y="594">date_avis</text><text class="ty" x="680" y="594">DATETIME</text>
+  <text class="ft" x="410" y="622">UNIQUE (id_annonce, id_auteur)</text>
+  <text class="ft" x="410" y="638">CHECK (note BETWEEN 1 AND 5)</text>
+  <text class="ft" x="410" y="654">CHECK (id_auteur &lt;&gt; id_cible)</text>
+
+  <!-- ========== Flèches FK → PK ========== -->
+  <path class="ar" stroke="#2563eb" marker-end="url(#bl)" d="M310,206 H360 V86 H410"/>
+  <path class="ar" stroke="#16a34a" marker-end="url(#gr)" d="M790,278 H740 V86 H690"/>
+  <path class="ar" stroke="#7c3aed" marker-end="url(#pu)" d="M310,182 H335 V18 H765 V86 H790"/>
+  <path class="ar" stroke="#dc2626" marker-end="url(#rd)" d="M450,400 V242"/>
+  <path class="ar" stroke="#ea580c" marker-end="url(#or)" d="M640,400 V242"/>
+  <path class="ar" stroke="#0891b2" marker-end="url(#te)" d="M690,470 H940 V290"/>
+
+  <text class="al" x="366" y="150" fill="#2563eb">id_gardien</text>
+  <text class="al" x="734" y="200" fill="#16a34a" text-anchor="end">id_proprietaire</text>
+  <text class="al" x="550" y="12" fill="#7c3aed" text-anchor="middle">id_annonce</text>
+  <text class="al" x="456" y="330" fill="#dc2626">id_auteur</text>
+  <text class="al" x="646" y="330" fill="#ea580c">id_cible</text>
+  <text class="al" x="815" y="462" fill="#0891b2" text-anchor="middle">id_annonce</text>
+
+  <!-- ========== Légende ========== -->
+  <text class="ft" x="30" y="690" font-style="normal" font-weight="bold">Légende</text>
+  <text class="badge pkb" x="30" y="708">PK</text><text class="ft" x="52" y="708">clé primaire</text>
+  <text class="badge fkb" x="150" y="708">FK</text><text class="ft" x="172" y="708">clé étrangère (flèche : FK → PK référencée)</text>
+  <text class="ft" x="30" y="726">NN = NOT NULL ; AI = AUTO_INCREMENT ; toutes les FK en ON DELETE RESTRICT</text>
+<metadata><c2pa:manifest>AAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYTozNWQ1NDhkZi02NDc2LTQ0NDUtYmE4OS0wNmQ2ZTU1MTYyOWEAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaJz/0IUlk9pWpEdtZZPKKpYAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDo1MDY0ZjYyZC04OTIyLTQxYjAtYjFjMy0wYmVmZjMzODNkM2ZscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNoO7Txg0DwBzwOpIsQkXHfswAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFggLI2CcIcnZsppf7HNaW1gdXhEF7eBwns1mTP0FnggXi6kZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaIB+fMZoYmrB/Zavji44l+oAAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRMAAAAAAAAAAAAAAAAZGhhc2hYIN1JFDXBPdogUAMS3iokbr7Nrok2yYgAmIPuJpDdWgDPZG5hbWVuanVtYmYgbWFuaWZlc3RqZXhjbHVzaW9uc4GiZXN0YXJ0GSKNZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOjM1ZDU0OGRmLTY0NzYtNDQ0NS1iYTg5LTA2ZDZlNTUxNjI5YS9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOjE1Y2Y1ODVmLTE5YWQtNDliMC1hNWU4LWNlNGVlMjNiYWMxZnJjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCAsjYJwhydmyml/sc1pbWB1eEQXt4HCezWZM/QWeCBeLqJjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFgg0j4YXDPZ/1GTkAveo7YEVV1PjJNQoGE3oaZ9+sc9jnOiY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFggtYkX0NUkLh1GWMSCSwMtdXifc+jB8yTknZ8uzf+BdB10Y2xhaW1fZ2VuZXJhdG9yX2luZm+jZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj+OPEz5o+nMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1+UCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9+1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQPXBnqb8I4mWYU8egxmSWeKmuh9pMItV/n4kk5V0cbvBQBUoC2kvaekSJnbGDhYAFGHgiYd36n+1uwskzgM4NtE=</c2pa:manifest></metadata></svg>

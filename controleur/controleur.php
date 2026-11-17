@@ -70,7 +70,7 @@ class Controleur
         $id = $this->exigerConnexion();
 
         if ($_SESSION['role'] !== 'admin') {
-            $this->rediriger('index.php');
+            $this->interdit();
         }
 
         return $id;
@@ -82,10 +82,19 @@ class Controleur
         exit;
     }
 
-    protected function introuvable($message = 'page introuvable.')
+    protected function introuvable()
     {
         http_response_code(404);
-        exit($message);
+        require __DIR__ . '/../vue/erreurs/404.php';
+        exit;
+    }
+
+    // affiche la page d'erreur 403 : accès interdit
+    protected function interdit()
+    {
+        http_response_code(403);
+        require __DIR__ . '/../vue/erreurs/403.php';
+        exit;
     }
 
     // jeton csrf de la session, à placer dans chaque formulaire post

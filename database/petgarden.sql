@@ -11,6 +11,7 @@ create table utilisateur (
     email varchar(150) not null unique,
     mdp varchar(255) not null,
     role enum('utilisateur', 'admin') not null default 'utilisateur',
+    actif boolean not null default true,
     constraint pk_utilisateur primary key (id_utilisateur)
 );
 

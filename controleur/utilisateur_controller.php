@@ -129,8 +129,9 @@ class UtilisateurController extends Controleur
         $utilisateurModel = new Utilisateur();
         $profil = $utilisateurModel->trouverParId($id);
 
+
         if ($profil === false) {
-            $this->introuvable('profil introuvable.');
+            $this->introuvable();
         }
 
         $avisModel = new Avis();

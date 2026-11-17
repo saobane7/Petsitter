@@ -53,6 +53,17 @@ Objectif : assembler les trois fonctions sur la liste des annonces du back-offic
 - [x] Les vues échappent toutes les données affichées avec `htmlspecialchars()` (via la fonction `e()`)
 - [x] Les modules utilisent l'en-tête et le pied communs (`vue/partials/`) et les classes CSS partagées
 
+### Checklist avant la remise finale
+
+- [x]  
+- [x] Le parcours complet (publier → candidater → valider → clôturer → noter) fonctionne sans erreur
+- [x] La note moyenne s'affiche correctement, y compris quand elle est absente
+- [x] Chaque contrôleur vérifie la session ET la propriété de la ressource
+- [x] Toutes les requêtes SQL sont préparées et tous les mots de passe sont hachés
+- [x] Le jeu de données SQL contient au moins 3 annonces, 4 candidatures et 3 avis dans des états variés
+- [x] Le dépôt Git a un historique de commits lisible par étudiant
+- [x] La documentation courte (MLD, diagramme de classes, logique métier) est rédigée
+
 ### Fonctionnalités
 
 - [x] Architecture MVC (`model/`, `vue/`, `controleur/`, `public/`)
